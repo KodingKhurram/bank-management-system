@@ -78,7 +78,7 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A layout example that shows off a responsive product landing page.">
 
-<title>MONETA BANK</title>
+<title>RKU BANK</title>
 <link rel="stylesheet" href="pure-release-0.5.0/pure.css">
 <link rel="stylesheet" href="pure-release-0.5.0/grids-responsive.css">
 <link rel="stylesheet" href="css/layouts/marketing.css">
@@ -239,8 +239,8 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
 
 
     <div class="footer l-box is-center">
-        Powered by BankMan Systems
-	copyrights@BankMan Team
+        Powered by RKU Systems
+	copyrights@RKU Team
     </div>
 
 </div>
