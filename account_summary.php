@@ -126,22 +126,19 @@ $acc_no=$_SESSION['acc_no'];
 /* fetch mysql data from  phpmyadmin server*/
 
 
-$query1="SELECT * FROM Transactions  WHERE Acc_no='$acc_no' ";
-$query2="SELECT First_name,Amount FROM CUSTOMERS WHERE Acc_no='$acc_no'";
-$query1_data=mysqli_query($con, $query1);
-$query2_data=mysqli_query($con, $query2);
-
+$query1="SELECT * FROM transaction  WHERE Acc_no1= $acc_no ";
+$query2="SELECT First_name,Amount FROM customers WHERE Acc_no= $acc_no ";
+$query1_data= mysqli_query($con, $query1);
+$query2_data= mysqli_query($con, $query2);
 /* check from array and select required data */
+$query2_row=mysqli_fetch_assoc($query2_data);
+$first_name =$query2_row['First_name'];
+$amount =$query2_row['Amount'];
 
+echo '<span style="color:#0F0691;"><h2>Name&nbsp;&nbsp;:'.$first_name.'<br>';
+echo 'Acc/no&nbsp;:'.$acc_no.'<br>';
+echo 'Balance: '.$amount.'<br><br><br></h2>';
 if( mysqli_num_rows($query1_data)!=0){
-	$query2_row=mysqli_fetch_assoc($query2_data);
-	$first_name =$query2_row['First_name'];
-	$amount =$query2_row['Amount'];
-
-	echo '<span style="color:#0F0691;"><h2>Name&nbsp;&nbsp;:'.$first_name.'<br>';
-	echo 'Acc/no&nbsp;:'.$acc_no.'<br>';
-	echo 'Balance: '.$amount.'<br><br><br></h2>';
-
  echo '<div class="table-responsive">'.
 
       '<table class="table table-striped table-hover table-bordered">'.

@@ -156,7 +156,7 @@ else{
 	$amount=$_POST['Amount'];
 	$_SESSION['amount']=$amount;
 
-	if($amount>0){
+	if($amount>0 && $amount<=100000 ){
 		@$atm=$_SESSION['atm'];
 		@$pass=$_SESSION['pass'];
 		$acc_no=$_SESSION['acc_no'];
@@ -171,26 +171,25 @@ else{
 	//echo"$acc_no1";
 	$query3="SELECT * FROM CUSTOMERS WHERE Acc_no='$acc_no'";
 
-	if($query3_data=mysqli_query($query3)){
+	if($query3_data=mysqli_query($con, $query3)){
 		$query3_row=mysqli_fetch_assoc($query3_data);
 		$a=$query3_row['Amount'];
 		//echo"$Emp_id";
 
 		if($amount<=$a){
-		if($amount<=100000){
 		if($atm!=null || $atm!="" && $amount>10000){
 		die('<h4>you cannot withdraw amount more than 10000<br></h4><h2>transaction declined</h2> ');
 		}
 $query4="SELECT Trans_count FROM Transaction_count";
-$query4_data=mysqli_query($query4);
+$query4_data=mysqli_query($con, $query4);
 $query4_row=mysqli_fetch_assoc($query4_data);
 		$Trans_id=$query4_row['Trans_count']+1;
-$query1="INSERT INTO Transactions(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','$remark','$amount','$Emp_id')";
-$query2="UPDATE CUSTOMERS SET Amount=Amount-'$amount' WHERE Acc_no='$acc_no'";
+$query1="INSERT INTO transaction(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','$remark','$amount','$Emp_id')";
+$query2="UPDATE customers SET Amount=Amount-'$amount' WHERE Acc_no='$acc_no'";
 $query5="UPDATE Transaction_count SET Trans_count=Trans_count+1";
 
-			if($query1_data=mysqli_query($query1) && $query2_data=mysqli_query($query2) ){
-				if($query5_data=mysqli_query($query5)){
+			if($query1_data=mysqli_query($con, $query1) && $query2_data=mysqli_query($con, $query2) ){
+				if($query5_data=mysqli_query($con, $query5)){
 				echo '<span style="color:#0F0691;"><h2>Successful</h2>';//.$query1_data;
 				echo '<h4>Account Number :</h4>'.$acc_no.'<h4>Amount debited:</h4>'.$amount;
 				}
@@ -201,7 +200,6 @@ $query5="UPDATE Transaction_count SET Trans_count=Trans_count+1";
   			  }
 
 
-		}
 		else{
 		if($atm!=null || $atm!="" && $amount>10000){
 		die('<h4>you cannot withdraw amount more than 10000<br></h4><h2>transaction declined</h2> ');
