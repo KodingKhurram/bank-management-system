@@ -177,9 +177,9 @@ else{
 		//echo"$Emp_id";
 
 		if($amount<=$a){
-		if($atm!=null || $atm!="" && $amount>10000){
+		/*if($atm!=null || $atm!="" && $amount>10000){
 		die('<h4>you cannot withdraw amount more than 10000<br></h4><h2>transaction declined</h2> ');
-		}
+  }*/
 $query4="SELECT Trans_count FROM Transaction_count";
 $query4_data=mysqli_query($con, $query4);
 $query4_row=mysqli_fetch_assoc($query4_data);
