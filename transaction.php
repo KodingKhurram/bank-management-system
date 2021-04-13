@@ -9,7 +9,7 @@ require_once 'get_logged.inc.php';
   <title>Workspace</title>
   <meta name="keywords" content="" />
   <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width">        
+  <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/templatemo_main.css">
 </head>
 
@@ -23,8 +23,8 @@ require_once 'get_logged.inc.php';
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
-        </button> 
-      </div>   
+        </button>
+      </div>
     </div>
 <div align="center">
 
@@ -34,15 +34,15 @@ require_once 'get_logged.inc.php';
                 <li><a href="new_customer.php">New Customer </a></li>
                 <li class="active"><a href="transaction.php">Transactions</a></li>
                 <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Logout</a></li>
-              </ul>          
+              </ul>
             </div>
-          </div> 
+          </div>
 
 		<br><br>
 		<!--<form action="transaction.php" method="POST" onsubmit="return validateForm()">
-		
+
 			 Account_Number*:&nbsp;&nbsp;<input type="text" value="" name="Acc_no"><br>
-			 First name*:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" name="First_name"><br> 
+			 First name*:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value="" name="First_name"><br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="Submit">
 		</form>-->
 
@@ -53,29 +53,29 @@ require_once 'get_logged.inc.php';
     				if (first_name == null || first_name == "" || acc_no == null || acc_no == "") {
         				alert("Fields with * are compulsory");
         				return false;
-        					} 
-					}	
+        					}
+					}
 		</script>
-<h1> Existing Customer Transactions.</h1> 
+<h1> Existing Customer Transactions.</h1>
 		<p class="margin-bottom-15">Please enter Account Number.</p>
           <div class="row">
             <div class="col-md-12"><div align="center">
               <form role="form" action="transaction.php" id="templatemo-preferences-form" method="POST" onsubmit="return validateForm()">
-                
+
                 <div class="col-md-6 margin-bottom-15">
                     <label for="Acc_no" class="control-label">Account Number</label>
-                    <input type="text" class="form-control" id="Acc_no" name="Acc_no" placeholder="Account Number" required>                 
-               </div> 
+                    <input type="text" class="form-control" id="Acc_no" name="Acc_no" placeholder="Account Number" required>
+               </div>
 		<div class="col-md-6 margin-bottom-15">
                     <label for="First_name" class="control-label">First Name</label>
-                    <input type="text" class="form-control" id="First_name" name="First_name" placeholder="First Name" required>                  
+                    <input type="text" class="form-control" id="First_name" name="First_name" placeholder="First Name" required>
                   </div>
-                  
-                </div> 
+
+                </div>
 		</div><div class="row templatemo-form-buttons">
                 <div class="col-md-12">
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  <button type="reset" class="btn btn-default">Reset</button>    
+                  <button type="reset" class="btn btn-default">Reset</button>
                 </div>
               </div></div>
             </form></div>
@@ -86,7 +86,7 @@ require_once 'get_logged.inc.php';
 <?php
 
 
-	
+
 if(isset($_POST['First_name']) && !empty($_POST['First_name']) && isset($_POST['Acc_no']) && !empty($_POST['Acc_no'])){
 
 	/*variable from form*/
@@ -95,11 +95,31 @@ if(isset($_POST['First_name']) && !empty($_POST['First_name']) && isset($_POST['
 	$_SESSION['acc_no']=$acc_no;
 
 	$query1="SELECT * FROM CUSTOMERS WHERE First_name='$first_name' AND Acc_no='$acc_no'";
-	$query1_data=mysql_query($query1);
-	
-	if(mysql_num_rows($query1_data)==1){
+	$query1_data=mysqli_query($con, $query1);
+?>
+<div class="table-responsive">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th > Transaction ID </td>
+      <th > Date </th>
+      <th > From </th>
+      <th > To </th>
+      <th > Remark </th>
+      <th > Amount </th>
+    </tr>
+  </thead><tbody>
+  <?php
+	if(mysqli_num_rows($query1_data)==1){
 		//echo 'successful'.$query1_data;
-		header('Location:debit.php');
+		$result1= mysqli_query($con, "SELECT * from transaction where Acc_no1= '$acc_no'");
+    while ($row= mysqli_fetch_assoc($result1))
+    {
+      echo "<tr>";
+      echo "<td>".$row['Trans_id']."</td>","<td>".$row['Date']."</td>","<td>".$row['Acc_no1']."</td>","<td>".$row['Acc_no2']."</td>","<td>".$row['Remark']."</td>","<td>".$row['Amount']."</td>";
+      echo "</tr>";
+    }
+    echo "</tbody></table></div>";
 		}
 	else {
 		echo 'Combination of account number/name doesnot exist';}
@@ -122,7 +142,7 @@ echo '      <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog
         </div>
       </div>
 
-      
+
     </div>
 </div>
     <script src="js/jquery.min.js"></script>
@@ -131,6 +151,3 @@ echo '      <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog
 
 ';
 ?>
-
-
-

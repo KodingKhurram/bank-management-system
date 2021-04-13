@@ -101,7 +101,7 @@ echo'<h1>Create a new Customer Account here.</h1>
                   <select class="form-control margin-bottom-15" id="year" name="year" placeholder="YEAR">';
 
 		    $i=1900;
-		while($i<=2005)
+		while($i<=2020)
 		  {   echo'<option>'.$i.'</option>';
                    	$i=$i+1;
 			}
@@ -243,7 +243,6 @@ $Emp_id=$_SESSION['emp_id'];
 
 
 /*generate random numbers*/
-while(1){
 	$atm_no=rand(4591000000000000,4591999999999999);
 	$acc_no=rand(1230000001,1239999991);
 
@@ -251,16 +250,16 @@ while(1){
 /*concatenating stings*/
 	$dob=$year."/".$month."/".$day;
 
-	$query2="SELECT Acc_no,ATM_NO FROM CUSTOMERS WHERE Acc_no='$acc_no' OR ATM_NO='$atm_no'";
-	$query2_data=mysqli_query($query2);
+	$query2="SELECT Acc_no,ATM_NO FROM customers WHERE Acc_no='$acc_no' OR ATM_NO='$atm_no'";
+	$query2_data=mysqli_query($con, $query2);
 	//echo $query2_data;
 
 	if(mysqli_num_rows($query2_data)==0){
 		$query1="INSERT INTO CUSTOMERS(Acc_no,First_name,Last_name,DOB,Contact_no,Address,Created_on,Amount,ATM_NO,PIN,Emp_id) VALUES('$acc_no','$first_name','$last_name','$dob','$contact_no','$address','$created_on','$amount','$atm_no','$pin','$Emp_id')";
 
-		if($query1_data=mysqli_query($query1)){
+		if($query1_data=mysqli_query($con, $query1)){
 			$query3="SELECT * FROM CUSTOMERS WHERE Acc_no='$acc_no'";
-			$query3_data=mysqli_query($query3);
+			$query3_data=mysqli_query($con, $query3);
 			$query3_row=mysqli_fetch_assoc($query3_data);
 			$first_name=$query3_row['First_name'];
 			echo '<h3>Welcome to Moneta Family</h3>'.'<br>';
@@ -268,18 +267,12 @@ while(1){
 			echo 'Account number:'.$acc_no.'<br>';
 			echo 'ATM No:'.$atm_no.'<br>';
 			echo 'PIN :'.$pin.'<br>';
-			break;
 				}
 		//else { echo 'not done';
 		//		}
 			}
 
-	$i=$i+1;
-	if($i==1000000){
-		echo 'no unique account number exists';
-		break;
-		   }
-	}
+
 
 	}
 
