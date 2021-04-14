@@ -39,7 +39,6 @@ if(isset($_POST['ATM_NO']) && !empty($_POST['ATM_NO']) && isset($_POST['PIN']) &
 }
 
 	?>
-
 <?php
 /*
  * takes data  from user.....recives employee id and password*/
@@ -97,7 +96,6 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
             <li class="pure-menu-selected"><a href="#Home">Home</a></li>
             <li><a href="#ATM">ATM</a></li>
             <li><a href="#Employee">Employee</a></li>
-	    <li><a href="http://students.iitmandi.ac.in/~naman_g/BankMan_final/BanKMan/">Lite Edition</a></li>
            <li><a href="http://students.iitmandi.ac.in/~naman_g/BankMan_final/about/index.html">About us </a></li>
         </ul>
     </div>
@@ -107,9 +105,8 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
 
 <img   width="100%" height="600" src="online_banking.jpg">
 
+<a name='Employee' class="anchor"></a>
 <div class="content-wrapper">
-<style>.anchor{padding-top: 1px;}</style>
-<a class="anchor" name="Employee"></a>
     <div class="content">
         <h2 class="content-head is-center">EMPLOYEE LOGIN</h2>
 	<div class="pure-g">

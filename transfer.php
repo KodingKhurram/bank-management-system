@@ -168,7 +168,7 @@ if(isset($_POST['Amount']) && !empty($_POST['Amount']) && isset($_POST['Acc_no2'
 
 		//echo $acc_no1;
 		$query3="SELECT * FROM CUSTOMERS WHERE Acc_no='$acc_no'";
-		$query3_data=mysqli_query($query3);
+		$query3_data=mysqli_query($con, $query3);
 
 		if(mysqli_num_rows($query3_data)==1){
 			$query3_row=mysqli_fetch_assoc($query3_data);
@@ -180,20 +180,20 @@ if(isset($_POST['Amount']) && !empty($_POST['Amount']) && isset($_POST['Acc_no2'
 
 
 			if($amount<=$a){
-			$query7="SELECT Trans_count FROM Transaction_count";
-$query7_data=mysqli_query($query7);
+			$query7="SELECT Trans_count FROM transaction_count";
+$query7_data=mysqli_query($con, $query7);
 $query7_row=mysqli_fetch_assoc($query7_data);
 		$Trans_id=$query7_row['Trans_count']+1;
-				$query1="INSERT INTO Transactions(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','TRANSFER','$amount','$Emp_id')";
-				$query6="INSERT INTO Transactions(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no_credit','TRANSFER','$amount','$Emp_id')";
+				$query1="INSERT INTO transaction(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','TRANSFER','$amount','$Emp_id')";
+				$query6="INSERT INTO transaction(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no_credit','TRANSFER','$amount','$Emp_id')";
 
-				$query4="UPDATE CUSTOMERS SET Amount=Amount-'$amount' WHERE Acc_no='$acc_no'";
-				$query2="UPDATE CUSTOMERS SET Amount=Amount+'$amount' WHERE Acc_no='$acc_no_credit'";
-				$query5="UPDATE Transaction_count SET Trans_count=Trans_count+1";
+				$query4="UPDATE customers SET Amount=Amount-'$amount' WHERE Acc_no='$acc_no'";
+				$query2="UPDATE customers SET Amount=Amount+'$amount' WHERE Acc_no='$acc_no_credit'";
+				$query5="UPDATE transaction_count SET Trans_count=Trans_count+1";
 
 
-				if($query1_data=mysqli_query($query1) && $query2_data=mysqli_query($query2) && $query4_data=mysqli_query($query4) && $query6_data=mysqli_query($query6) ){
-					if($query5_data=mysqli_query($query5)){
+				if($query1_data=mysqli_query($con, $query1) && $query2_data=mysqli_query($con, $query2) && $query4_data=mysqli_query($con, $query4) && $query6_data=mysqli_query($con, $query6) ){
+					if($query5_data=mysqli_query($con, $query5)){
 					echo '<br>'.'<span style="color:#0F0691;"><h2>Money Transfer Successful</h2>';//.$query1_data;
 					echo '<h4>Account Number :</h4>'.$acc_no.'<h4>Amount transfered:</h4>'.$amount.'<h4>Amount transfered to:</h4>'.$acc_no_credit;
 					}
