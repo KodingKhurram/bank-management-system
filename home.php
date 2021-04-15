@@ -60,7 +60,7 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
 				    }
 
 				else if(mysqli_num_rows($query1_data)==0){
-						echo 'Invalid username and/or password';
+						echo '<script>alert("Incorrect Employee Id and/or Password");</script>';
 				    }
 			}
 

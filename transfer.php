@@ -166,7 +166,7 @@ if(isset($_POST['Amount']) && !empty($_POST['Amount']) && isset($_POST['Acc_no2'
 		$acc_no=$_SESSION['acc_no'];
 
 
-		//echo $acc_no1;
+		echo $acc_no1;
 		$query3="SELECT * FROM CUSTOMERS WHERE Acc_no='$acc_no'";
 		$query3_data=mysqli_query($con, $query3);
 
@@ -175,7 +175,7 @@ if(isset($_POST['Amount']) && !empty($_POST['Amount']) && isset($_POST['Acc_no2'
 			$a=$query3_row['Amount'];
 
 		if(!($Emp_id)){ $Emp_id='ATM_banker';
-				//echo $Emp_id;
+				echo $Emp_id;
 					}
 
 
