@@ -17,4 +17,3 @@ require 'get_logged.inc.php';
 		}
 
 ?>
-

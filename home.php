@@ -33,6 +33,7 @@ if(isset($_POST['ATM_NO']) && !empty($_POST['ATM_NO']) && isset($_POST['PIN']) &
 
 			else if(mysqli_num_rows($query1_data)==0){
 					echo '<script>alert("Invalid ATM NUMBER and/or PIN");</script>';
+
 				}
 		}
 
@@ -77,7 +78,7 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="A layout example that shows off a responsive product landing page.">
 
-<title>RKU BANK</title>
+<title>ICICI BANK</title>
 <link rel="stylesheet" href="pure-release-0.5.0/pure.css">
 <link rel="stylesheet" href="pure-release-0.5.0/grids-responsive.css">
 <link rel="stylesheet" href="css/layouts/marketing.css">
@@ -90,7 +91,7 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
 
 <div class="header">
     <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href="http://students.iitmandi.ac.in/~v_kumar/BankMan_final/home.php">RKU BANK</a>
+        <a class="pure-menu-heading" href="http://students.iitmandi.ac.in/~v_kumar/BankMan_final/home.php">ICICI BANK</a>
 
         <ul>
             <li class="pure-menu-selected"><a href="#Home">Home</a></li>
@@ -236,8 +237,7 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
 
 
     <div class="footer l-box is-center">
-        Powered by RKU Systems
-	copyrights@RKU Team
+	copyrights@ICICI Bank developement team
     </div>
 
 </div>
