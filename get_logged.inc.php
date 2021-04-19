@@ -12,7 +12,7 @@ function loginemp(){
 		return true;
 		}
 	else{
-		echo 'invalid id/password';
+		//echo 'invalid id/password';
 		return false;
 		}
 	}
@@ -27,4 +27,3 @@ function loginatm(){
 		}
 	}
 ?>
-

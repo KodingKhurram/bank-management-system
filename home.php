@@ -32,7 +32,7 @@ if(isset($_POST['ATM_NO']) && !empty($_POST['ATM_NO']) && isset($_POST['PIN']) &
 			}
 
 			else if(mysqli_num_rows($query1_data)==0){
-					echo 'Invalid ATM NUMBER and/or PIN';
+					echo '<script>alert("Invalid ATM NUMBER and/or PIN");</script>';
 				}
 		}
 

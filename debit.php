@@ -169,13 +169,11 @@ else{
 			$remark="DEBIT";
 			}
 	//echo"$acc_no1";
-	$query3="SELECT * FROM CUSTOMERS WHERE Acc_no='$acc_no'";
-
+	$query3="SELECT * FROM customers WHERE Acc_no='$acc_no'";
 	if($query3_data=mysqli_query($con, $query3)){
 		$query3_row=mysqli_fetch_assoc($query3_data);
 		$a=$query3_row['Amount'];
-		//echo"$Emp_id";
-
+		//echo"$Emp_id"
 		if($amount<=$a){
 		/*if($atm!=null || $atm!="" && $amount>10000){
 		die('<h4>you cannot withdraw amount more than 10000<br></h4><h2>transaction declined</h2> ');
@@ -184,7 +182,8 @@ $query4="SELECT Trans_count FROM Transaction_count";
 $query4_data=mysqli_query($con, $query4);
 $query4_row=mysqli_fetch_assoc($query4_data);
 		$Trans_id=$query4_row['Trans_count']+1;
-$query1="INSERT INTO transaction(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','$remark','$amount','$Emp_id')";
+    //echo $Trans_id;
+$query1="INSERT INTO transaction (Trans_id,Date,Acc_no1,Acc_no2,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','$acc_no','$remark','$amount','$Emp_id')";
 $query2="UPDATE customers SET Amount=Amount-'$amount' WHERE Acc_no='$acc_no'";
 $query5="UPDATE Transaction_count SET Trans_count=Trans_count+1";
 
@@ -192,21 +191,12 @@ $query5="UPDATE Transaction_count SET Trans_count=Trans_count+1";
 				if($query5_data=mysqli_query($con, $query5)){
 				echo '<span style="color:#0F0691;"><h2>Successful</h2>';//.$query1_data;
 				echo '<h4>Account Number :</h4>'.$acc_no.'<h4>Amount debited:</h4>'.$amount;
-				}
-			else { echo 'Couldnot perform!!<br> Internal error';
+        echo '<br/> Your current balance is : ';
 				}
 
-
+			else { echo 'Couldnot perform!!<br> Internal error';mysqli_error($con);
+				}
   			  }
-
-
-		else{
-		if($atm!=null || $atm!="" && $amount>10000){
-		die('<h4>you cannot withdraw amount more than 10000<br></h4><h2>transaction declined</h2> ');
-		}
-		header('Location:manager_permission.php');
-		}
-
 	  }
 	  else{
 			echo 'Your account does not have sufficient balance for this transaction'.'<br>';
@@ -218,8 +208,13 @@ $query5="UPDATE Transaction_count SET Trans_count=Trans_count+1";
 
 }
 else{
-		die('amount entered is not valid');
-	  }
+  if ($amount<0) echo "Amount entered is not valid";
+if($amount>10000){
+die('<h4>you cannot withdraw amount more than 10000<br></h4><h2>transaction declined</h2> ');
+header('Location:manager_permission.php');
+}
+
+}
 
 }
 else {

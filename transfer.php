@@ -166,7 +166,7 @@ if(isset($_POST['Amount']) && !empty($_POST['Amount']) && isset($_POST['Acc_no2'
 		$acc_no=$_SESSION['acc_no'];
 
 
-		echo $acc_no1;
+		//echo $acc_no;
 		$query3="SELECT * FROM CUSTOMERS WHERE Acc_no='$acc_no'";
 		$query3_data=mysqli_query($con, $query3);
 
@@ -175,7 +175,7 @@ if(isset($_POST['Amount']) && !empty($_POST['Amount']) && isset($_POST['Acc_no2'
 			$a=$query3_row['Amount'];
 
 		if(!($Emp_id)){ $Emp_id='ATM_banker';
-				echo $Emp_id;
+				//echo $Emp_id;
 					}
 
 
@@ -184,16 +184,17 @@ if(isset($_POST['Amount']) && !empty($_POST['Amount']) && isset($_POST['Acc_no2'
 $query7_data=mysqli_query($con, $query7);
 $query7_row=mysqli_fetch_assoc($query7_data);
 		$Trans_id=$query7_row['Trans_count']+1;
-				$query1="INSERT INTO transaction(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','TRANSFER','$amount','$Emp_id')";
-				$query6="INSERT INTO transaction(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no_credit','TRANSFER','$amount','$Emp_id')";
+				$query1="INSERT INTO transaction(Trans_id,Date,Acc_no1,Acc_no2,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no','$acc_no_credit','TRANSFER','$amount','$Emp_id')";
+				//$query6="INSERT INTO transaction(Trans_id,Date,Acc_no,Remark,Amount,Emp_id) VALUES('$Trans_id','$date','$acc_no_credit','TRANSFER','$amount','$Emp_id')";
 
 				$query4="UPDATE customers SET Amount=Amount-'$amount' WHERE Acc_no='$acc_no'";
 				$query2="UPDATE customers SET Amount=Amount+'$amount' WHERE Acc_no='$acc_no_credit'";
 				$query5="UPDATE transaction_count SET Trans_count=Trans_count+1";
 
 
-				if($query1_data=mysqli_query($con, $query1) && $query2_data=mysqli_query($con, $query2) && $query4_data=mysqli_query($con, $query4) && $query6_data=mysqli_query($con, $query6) ){
+				if($query1_data=mysqli_query($con, $query1) && $query2_data=mysqli_query($con, $query2) && $query4_data=mysqli_query($con, $query4)){
 					if($query5_data=mysqli_query($con, $query5)){
+          //  echo "yo bro";
 					echo '<br>'.'<span style="color:#0F0691;"><h2>Money Transfer Successful</h2>';//.$query1_data;
 					echo '<h4>Account Number :</h4>'.$acc_no.'<h4>Amount transfered:</h4>'.$amount.'<h4>Amount transfered to:</h4>'.$acc_no_credit;
 					}
