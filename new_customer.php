@@ -262,7 +262,7 @@ $Emp_id=$_SESSION['emp_id'];
 			$query3_data=mysqli_query($con, $query3);
 			$query3_row=mysqli_fetch_assoc($query3_data);
 			$first_name=$query3_row['First_name'];
-			echo '<h3>Welcome to Moneta Family</h3>'.'<br>';
+			echo '<h3>Welcome to ICICI Bank</h3>'.'<br>';
 			echo 'Name :'.$first_name.' '.$last_name.'<br>';
 			echo 'Account number:'.$acc_no.'<br>';
 			echo 'ATM No:'.$atm_no.'<br>';
