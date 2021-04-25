@@ -191,7 +191,7 @@ $query5="UPDATE Transaction_count SET Trans_count=Trans_count+1";
 				if($query5_data=mysqli_query($con, $query5)){
 				echo '<span style="color:#0F0691;"><h2>Successful</h2>';//.$query1_data;
 				echo '<h4>Account Number :</h4>'.$acc_no.'<h4>Amount debited:</h4>'.$amount;
-        echo '<br/> Your current balance is : ';
+        //echo '<br/> Your current balance is : ';
 				}
 
 			else { echo 'Couldnot perform!!<br> Internal error';mysqli_error($con);
