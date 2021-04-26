@@ -97,7 +97,7 @@ if(isset($_POST['Emp_id']) && !empty($_POST['Emp_id']) && isset($_POST['Password
             <li class="pure-menu-selected"><a href="#Home">Home</a></li>
             <li><a href="#ATM">ATM</a></li>
             <li><a href="#Employee">Employee</a></li>
-           <li><a href="http://students.iitmandi.ac.in/~naman_g/BankMan_final/about/index.html">About us </a></li>
+           <li><a href="#">About us </a></li>
         </ul>
     </div>
 </div>
